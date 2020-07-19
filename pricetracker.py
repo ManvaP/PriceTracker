@@ -1,5 +1,3 @@
-
-
 from requests import get
 from requests.exceptions import RequestException
 from contextlib import closing
@@ -8,7 +6,10 @@ from bs4 import BeautifulSoup
 
 def simple_get(url):
     try:
-        with closing(get(url, stream = True)) as resp:
+        headers = {
+            'User-Agent': 'Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, '
+                          'like Gecko) Chrome/58.0.3029.110 Safari/537.3'}
+        with closing(get(url, stream=True, headers=headers)) as resp:
             if is_good_response(resp):
                 return resp.content
             else:
@@ -29,6 +30,9 @@ def log_error(e):
     print(e)
 
 
-raw_html = simple_get('https://en.wikipedia.org/wiki/Rutgers_University')
-print('Hi')
-print(raw_html)
+raw_html = simple_get('https://www.amazon.com/')
+
+len(raw_html)
+
+
+#html = BeautifulSoup(raw_html, 'html.parser')
