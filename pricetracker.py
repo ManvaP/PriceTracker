@@ -30,9 +30,14 @@ def log_error(e):
     print(e)
 
 
-raw_html = simple_get('https://www.amazon.com/')
+raw_html = simple_get('https://www.amazon.com/s?k=laptop&ref=nb_sb_noss_2')
 
-len(raw_html)
+print(raw_html)
 
+html = BeautifulSoup(raw_html, 'html.parser')
 
-#html = BeautifulSoup(raw_html, 'html.parser')
+links = html.select('a.a-link-normal.a-text-normal')
+
+for tag in links:
+    print(tag.attrs['href'])
+
