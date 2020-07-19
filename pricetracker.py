@@ -1,3 +1,4 @@
+import requests
 from requests import get
 from requests.exceptions import RequestException
 from contextlib import closing
@@ -29,10 +30,10 @@ def is_good_response(resp):
 def log_error(e):
     print(e)
 
+#simple_get('https://www.amazon.com/s?k=laptop&ref=nb_sb_noss_2')
 
-raw_html = simple_get('https://www.amazon.com/s?k=laptop&ref=nb_sb_noss_2')
-
-print(raw_html)
+raw_html = requests.get('https://www.amazon.com/s?k=laptop&ref=nb_sb_noss_2')
+raw_html.raise_for_status()
 
 html = BeautifulSoup(raw_html, 'html.parser')
 

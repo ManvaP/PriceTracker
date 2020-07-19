@@ -5,6 +5,7 @@ url = 'https://www.amazon.com/Acer-SB220Q-Ultra-Thin-Frame-Monitor/dp/B07CVL2D2S
 headers = {"User-Agent": 'Mozilla/5.0 (Windows NT 10.0; Win64; x64; rv:78.0) Gecko/20100101 Firefox/78.0'}
 
 page = requests.get(url, headers = headers)
+page.raise_for_status()
 
 soup = BeautifulSoup(page.content, 'html.parser')
 
